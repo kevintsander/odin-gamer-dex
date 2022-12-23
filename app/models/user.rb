@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter]
 
+  has_many :posts
+
   def email_required?
     false
   end
