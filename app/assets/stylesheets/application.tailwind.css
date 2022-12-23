@@ -2,12 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
+    .btn {
+        @apply rounded drop-shadow-md;
+    }
 
-*/
+    .btn-nav {
+        @apply px-4 py-2 bg-lime-200 text-slate-900;
+    }
+
+    .btn-main {
+        @apply px-3 py-1 bg-violet-100 text-slate-900;
+    }
+
+    .btn-nav:hover,
+    .btn-main:hover {
+        @apply bg-lime-300 drop-shadow-sm cursor-pointer;
+    }
+
+    .btn-main:hover {
+        @apply bg-violet-200 drop-shadow-sm;
+    }
+
+    .title {
+        @apply text-2xl font-bold font-digital;
+    }
+
+    .top-nav {
+        @apply flex items-center justify-between bg-slate-900 p-6 drop-shadow-lg;
+    }
+
+    .user-nav {
+        @apply flex items-center gap-4 text-slate-200 font-semibold;
+    }
+
+    .user-registration-container {
+        @apply bg-violet-900 text-violet-50 rounded-xl p-12 drop-shadow-lg;
+    }
+
+    .input-main {
+        @apply bg-slate-50 text-slate-900 rounded;
+    }
+
+    .input-main:focus {
+        @apply outline-lime-300 border-none;
+    }
+
+    .link-main {
+        @apply text-lime-300 font-semibold;
+    }
+
+    .link-main:hover {
+        @apply text-lime-400 underline;
+    }
+
+    .h2-main {
+        @apply text-xl mb-4 font-bold;
+    }
+
+}

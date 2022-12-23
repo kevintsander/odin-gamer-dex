@@ -1,11 +1,16 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="top-nav" role="navigation" aria-label="main navigation">
+  <div class="title">
+    <span class="text-white underline decoration-lime-200 decoration-2">gamer</span><span class="text-lime-200">dex</span>
+  </div>
   <div class="navbar-end">
     <div class="navbar-item">
-      <div class="buttons">
+      <div class="user-nav">
         <% if current_user %>
-          <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+          <span class="welcome">Hi, <%= current_user.display_name %></span>
+          <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-nav" %>
         <% else %>
-          <%= link_to "Login", new_user_session_path %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-nav" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-nav" %>
         <% end %>
       </div>
     </div>
