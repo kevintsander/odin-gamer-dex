@@ -39,15 +39,15 @@
     }
 
     .user-registration-container {
-        @apply bg-violet-900 text-violet-50 rounded-xl p-12 drop-shadow-lg;
+        @apply bg-violet-900 text-slate-200 rounded-xl p-12 drop-shadow-lg;
     }
 
     .input-main {
-        @apply bg-slate-50 text-slate-900 rounded;
+        @apply bg-slate-50 text-slate-900 rounded-lg shadow-inner shadow-slate-400;
     }
 
     .input-main:focus {
-        @apply outline-lime-300 border-none;
+        @apply outline-lime-400 outline-2;
     }
 
     .link-main {
@@ -59,7 +59,7 @@
     }
 
     .h2-main {
-        @apply text-xl mb-4 font-bold;
+        @apply text-2xl mb-4 font-semibold;
     }
 
 }
