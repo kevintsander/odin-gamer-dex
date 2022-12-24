@@ -59,7 +59,11 @@
     }
 
     .h2-main {
-        @apply text-xl mb-4 font-bold;
+        @apply text-xl mb-4 font-semibold;
+    }
+
+    .h3-main {
+        @apply mb-3 font-semibold;
     }
 
     .posts-container {
