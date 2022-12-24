@@ -1,0 +1,4 @@
+<%= form_with model: post, url: [user, post], class: 'flex gap-4' do |f| %>
+  <%= f.text_field :body, class: 'input-main flex-grow' %>
+  <%= f.submit 'Add Post', class: 'btn btn-main' %>
+<% end %>

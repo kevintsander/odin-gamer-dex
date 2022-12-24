@@ -38,12 +38,12 @@
         @apply flex items-center gap-4 text-slate-200 font-semibold;
     }
 
-    .user-registration-container {
+    .main-container {
         @apply bg-violet-900 text-violet-50 rounded-xl p-12 drop-shadow-lg;
     }
 
     .input-main {
-        @apply bg-slate-50 text-slate-900 rounded;
+        @apply bg-slate-50 text-slate-900 rounded shadow-md;
     }
 
     .input-main:focus {
@@ -60,6 +60,18 @@
 
     .h2-main {
         @apply text-xl mb-4 font-bold;
+    }
+
+    .posts-container {
+        @apply container flex flex-col px-8 py-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg;
+    }
+
+    .post {
+        @apply p-4;
+    }
+
+    .post:not(:last-child) {
+        @apply border-b-2 border-slate-200;
     }
 
 }
