@@ -3,6 +3,8 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @posts = @user.posts.order(created_at: :desc)
     @post = @user.posts.new
+    p '8' * 1000
+    p 'did i make it here?'
   end
 
   def create

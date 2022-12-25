@@ -67,7 +67,7 @@
     }
 
     .posts-container {
-        @apply container flex flex-col px-8 py-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg;
+        @apply flex flex-col px-8 py-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg;
     }
 
     .post {

@@ -12,8 +12,6 @@ class User < ApplicationRecord
   end
 
   def display_name
-    p self
-    puts "name #{name} email #{email} username #{username}"
     return name unless name.blank?
     return username unless username.blank?
     return email unless email.blank?

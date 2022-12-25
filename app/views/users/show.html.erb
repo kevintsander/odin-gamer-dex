@@ -1,7 +1,6 @@
-<div>
-  <% @user.posts.each do |post| %>
-    <%= turbo_frame_tag post do %>
-      <%= render post %>
-    <% end %>
+<div class="main-container">
+  <% puts user_posts_path(@user) %>
+  <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) do %>
+    <p>Placeholder</p>
   <% end %>
 </div>
