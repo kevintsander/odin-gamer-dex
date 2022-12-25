@@ -38,8 +38,8 @@
         @apply flex items-center gap-4 text-slate-200 font-semibold;
     }
 
-    .user-registration-container {
-        @apply bg-violet-900 text-slate-200 rounded-xl p-12 drop-shadow-lg;
+    .main-container {
+        @apply bg-violet-900 text-violet-50 rounded-xl p-12 drop-shadow-lg;
     }
 
     .input-main {
@@ -60,6 +60,23 @@
 
     .h2-main {
         @apply text-2xl mb-4 font-semibold;
+        @apply text-xl mb-4 font-semibold;
+    }
+
+    .h3-main {
+        @apply mb-3 font-semibold;
+    }
+
+    .posts-container {
+        @apply flex flex-col px-8 py-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg;
+    }
+
+    .post {
+        @apply p-4;
+    }
+
+    .post:not(:last-child) {
+        @apply border-b-2 border-slate-200;
     }
 
 }

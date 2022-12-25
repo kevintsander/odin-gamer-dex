@@ -5,28 +5,20 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter]
 
+  has_many :posts
+
   def email_required?
     false
   end
 
   def display_name
-    p self
-    puts "name #{name} email #{email} username #{username}"
     return name unless name.blank?
     return username unless username.blank?
     return email unless email.blank?
   end
 
   def self.from_omniauth(auth)
-    p 'AUTH'
-    p auth
-    p 'AUTH INFO'
-    p auth.info
-    p 'AUTH EXTRA'
-    p auth.extra
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      p auth.info
-      user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name # assuming the user model has a name
       user.username = auth.screen_name # assuming the user model has a username
