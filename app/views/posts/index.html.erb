@@ -3,8 +3,13 @@
     <div class="post-main-container flex flex-col gap-8">
       <%= render 'form', post: @post, user: @user if current_user %>
       <div id="posts-container" class="posts-container">
+        <%# append posts from turb stream here %>
       </div>
-      <%= turbo_frame_tag "pagination", src: user_posts_path(@user, format: :turbo_stream), loading: :lazy %>
+      <%= turbo_frame_tag "pagination", src: user_posts_path(@user, format: :turbo_stream), loading: :lazy do %>
+        <% @page_size.times do %>
+          <%= render 'post_placeholder' %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 </div>
