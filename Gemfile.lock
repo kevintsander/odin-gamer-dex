@@ -157,6 +157,7 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     orm_adapter (0.5.0)
+    pagy (6.0.0)
     pg (1.4.5)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -262,6 +263,7 @@ DEPENDENCIES
   omniauth
   omniauth-rails_csrf_protection
   omniauth-twitter
+  pagy (~> 6.0)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)

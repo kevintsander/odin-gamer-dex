@@ -80,4 +80,8 @@ group :test do
   gem 'webdrivers'
 end
 
+# secrets
 gem 'figaro', '~> 1.2'
+
+# pagination
+gem 'pagy', '~> 6.0'

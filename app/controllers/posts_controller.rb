@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.order(created_at: :desc)
+    @pagy, @posts = pagy_countless(@user.posts.order(created_at: :desc), items: 10)
     @post = @user.posts.new
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create

@@ -3,8 +3,8 @@
     <div class="post-main-container flex flex-col gap-8">
       <%= render 'form', post: @post, user: @user if current_user %>
       <div id="posts-container" class="posts-container">
-        <%= render @posts %>
       </div>
+      <%= turbo_frame_tag "pagination", src: user_posts_path(@user, format: :turbo_stream), loading: :lazy %>
     </div>
   <% end %>
 </div>
