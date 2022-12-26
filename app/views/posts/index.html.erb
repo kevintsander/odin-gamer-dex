@@ -1,4 +1,5 @@
 <div class="main-container">
+
   <%= turbo_frame_tag id="Posts" do %>
     <div class="post-main-container flex flex-col gap-8">
       <%= render 'form', post: @post, user: @user if current_user %>

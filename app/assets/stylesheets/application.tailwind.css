@@ -39,7 +39,7 @@
     }
 
     .main-container {
-        @apply bg-violet-900 text-violet-50 rounded-xl p-12 drop-shadow-lg;
+        @apply bg-violet-900 text-violet-50 rounded-2xl p-12 drop-shadow-lg;
     }
 
     .input-main {
@@ -77,6 +77,18 @@
 
     .post-placeholder>span {
         @apply bg-slate-200
+    }
+
+    .user-info-container {
+        @apply bg-lime-100 p-4 rounded-xl;
+    }
+
+    .avatar {
+        @apply rounded-full;
+    }
+
+    .avatar-main {
+        @apply shadow-lg shadow-slate-800;
     }
 
 }

@@ -32,3 +32,9 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+microsoft:
+  service: AzureStorage
+  storage_account_name: kevdevelopmentfiles
+  storage_acces_key: <%= ENV['azure_storage_access_key'] %>
+  container: ""

@@ -32,8 +32,16 @@
       <%= f.password_field :current_password, autocomplete: "current-password", class: "input-main" %>
     </div>
 
+    <div class="field">
+      <%= f.label :avatar%>
+      <% if resource.avatar.attached? %>
+        <%= image_tag resource.avatar.variant(resize_to_fill: [150, nil]), class: "avatar mb-4" %>
+      <% end %>
+      <%= f.file_field :avatar %>
+    </div>
+
     <div class="actions">
-      <%= f.submit "Update", class: "btn btn-main" %>
+      <%= f.submit "Update", class: "btn btn-main mt-4" %>
     </div>
   <% end %>
   <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, data: { turbo_method: :delete }, class: "link-main pt-8" %>
