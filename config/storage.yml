@@ -36,5 +36,5 @@ local:
 microsoft:
   service: AzureStorage
   storage_account_name: kevdevelopmentfiles
-  storage_acces_key: <%= ENV['azure_storage_access_key'] %>
-  container: ""
+  storage_access_key: <%= ENV['azure_storage_access_key'] %>
+  container: gamerdexfiles
