@@ -7,7 +7,9 @@
       <div class="user-nav">
         <% if current_user %>
           <%= link_to user_path(current_user), class: "flex items-center gap-4" do %>
-            <%= image_tag current_user.avatar.variant(resize_to_fill: [50, nil]), class: "rounded-full", if: current_user.avatar.attached? %>
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar.variant(resize_to_fill: [50, nil]), class: "rounded-full" %>
+            <% end %>
             <span class="welcome">Hi <%= current_user.display_name %></span>
           <% end %>
         </span>

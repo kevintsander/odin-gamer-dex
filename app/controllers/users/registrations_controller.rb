@@ -38,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -59,4 +59,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def update_resource(resource, params)
+    # skip password check for omniauth users
+    if resource.provider
+      params.delete('current_password')
+      resource.update_without_password(params)
+    else
+      resource.update_with_password(params)
+    end
+  end
 end
