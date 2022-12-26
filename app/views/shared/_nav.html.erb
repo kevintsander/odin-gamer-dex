@@ -6,7 +6,7 @@
     <div class="navbar-item">
       <div class="user-nav">
         <% if current_user %>
-          <span class="welcome">Hi, <%= current_user.display_name %></span>
+          <span class="welcome">Hi, <%= link_to current_user.display_name, user_path(current_user) %></span>
           <%= link_to "Profile", edit_user_registration_path, class: "btn btn-nav" %>
           <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-nav" %>
         <% else %>

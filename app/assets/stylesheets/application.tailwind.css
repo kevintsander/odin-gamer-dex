@@ -68,15 +68,11 @@
     }
 
     .posts-container {
-        @apply flex flex-col px-8 py-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg;
+        @apply flex flex-col gap-1;
     }
 
     .post {
-        @apply p-4;
-    }
-
-    .post:not(:last-child) {
-        @apply border-b-2 border-slate-200;
+        @apply p-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg;
     }
 
 }
