@@ -1,3 +1,24 @@
 .link-main::before {
     content: '↗'
 }
+
+.user-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "left-panel content";
+    gap: 1rem;
+}
+
+.user-username {
+    grid-area: username;
+}
+
+.user-left-panel {
+    grid-area: left-panel;
+}
+
+.user-content {
+    grid-area: content;
+}

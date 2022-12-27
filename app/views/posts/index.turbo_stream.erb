@@ -5,4 +5,6 @@
   <%= turbo_stream.replace "pagination" do %>
     <%= turbo_frame_tag "pagination", src: user_posts_path(@user, page: @pagy.next, format: :turbo_stream), loading: :lazy %>
   <% end %>
+<% else %>
+  <%= turbo_stream.replace "pagination" %>
 <% end%>

@@ -1,10 +1,11 @@
-<div class="main-container">
+<div class="main-container user-layout p-4 rounded-tl-[108px]">
 
-  <div class="user-info-container">
-    <%= image_tag @user.avatar.variant(resize_to_fill: [200, nil]), class: "avatar avatar-main" %>
+  <%= render 'profile-card' %>
+  <div class="user-content">
+    <div class="user-content-top mb-4 flex items-end gap-4">
+      <h2 class="user-username text-3xl font-semibold text-slate-300 drop-shadow-md"><%= @user.display_name %></h2>
+      <%= button_to "Add Friend", root_path, form_class: "rounded text-slate-800 bg-lime-100 hover:bg-lime-200 text-sm px-3" %>
+    </div>
+    <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) %>
   </div>
-
-  <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) do %>
-    <p>Placeholder</p>
-  <% end %>
 </div>

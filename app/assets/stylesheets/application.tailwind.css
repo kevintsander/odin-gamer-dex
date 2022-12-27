@@ -2,7 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;300;400;500;600;700&family=DotGothic16&family=Press+Start+2P&display=swap');
+
+@layer base {
+    @font-face {
+        font-family: 'pixeloid';
+        src: url('PixeloidSans-nR3g1.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'pixeloid-bold';
+        src: url('PixeloidSansBold-RpeJo.ttf') format('truetype');
+    }
+}
 
 @layer components {
     .btn {
@@ -26,20 +38,12 @@
         @apply bg-violet-200 drop-shadow-sm;
     }
 
-    .title {
-        @apply text-2xl font-bold font-digital;
-    }
-
-    .top-nav {
-        @apply flex items-center justify-between bg-slate-900 p-6 drop-shadow-lg;
-    }
-
     .user-nav {
         @apply flex items-center gap-4 text-slate-200 font-semibold;
     }
 
     .main-container {
-        @apply bg-violet-900 text-violet-50 rounded-2xl p-12 drop-shadow-lg;
+        @apply bg-violet-900 text-violet-50 rounded-2xl drop-shadow-lg;
     }
 
     .input-main {
@@ -77,10 +81,6 @@
 
     .post-placeholder>span {
         @apply bg-slate-200
-    }
-
-    .user-info-container {
-        @apply bg-lime-100 p-4 rounded-xl;
     }
 
     .avatar {

@@ -1,7 +1,5 @@
-<nav class="top-nav" role="navigation" aria-label="main navigation">
-  <div class="title">
-    <span class="text-white underline decoration-violet-400 decoration-2">gamer</span><span class="text-lime-200">dex</span>
-  </div>
+<nav class="items-center justify-between bg-slate-900 px-6 py-3 drop-shadow-lg flex" role="navigation" aria-label="main navigation">
+  <%= render 'shared/logo' %>
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="user-nav">
@@ -10,7 +8,7 @@
             <% if current_user.avatar.attached? %>
               <%= image_tag current_user.avatar.variant(resize_to_fill: [50, nil]), class: "rounded-full" %>
             <% end %>
-            <span class="welcome">Hi <%= current_user.display_name %></span>
+            <span class="welcome">Hi, <%= current_user.display_name %></span>
           <% end %>
         </span>
         <%= link_to "Profile", edit_user_registration_path, class: "btn btn-nav" %>

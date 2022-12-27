@@ -7,9 +7,7 @@
         <%# append posts from turb stream here %>
       </div>
       <%= turbo_frame_tag "pagination", src: user_posts_path(@user, format: :turbo_stream), loading: :lazy do %>
-        <% @page_size.times do %>
-          <%= render 'post_placeholder' %>
-        <% end %>
+        <%= render 'posts_placeholder', page_size: @page_size %>
       <% end %>
     </div>
   <% end %>

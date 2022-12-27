@@ -9,9 +9,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        "2xs": ["9px", "9px"],
+      },
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
-        digital: ["'Press Start 2P'", "Arial", "serif"],
+        // sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["Bai Jamjuree", "Arial", "sans-serif"],
+        digital: ["pixeloid", "Arial", "sans-serif"],
+        digitalbold: ["pixeloid-bold", "Arial", "sans-serif"],
       },
     },
   },
