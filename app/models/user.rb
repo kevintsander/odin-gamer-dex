@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :posts
   has_one_attached :avatar
 
+  has_many :user_relationships
+  has_many :relations, through: :user_relationships, source: :friend
+
   def email_required?
     false
   end
