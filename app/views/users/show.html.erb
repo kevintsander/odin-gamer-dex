@@ -4,8 +4,19 @@
   <div class="user-content">
     <div class="user-content-top mb-4 flex items-end gap-4">
       <h2 class="user-username text-3xl font-semibold text-slate-300 drop-shadow-md"><%= @user.display_name %></h2>
-      <%= button_to "Add Friend", root_path, form_class: "rounded text-slate-800 bg-lime-100 hover:bg-lime-200 text-sm px-3" %>
-    </div>
-    <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) %>
+      <% if current_user %>
+        <%= turbo_frame_tag "user-relationship" do %>
+          <% case current_user.find_relationship_status(@user) %>
+          <% when 'none' %>
+          <%= button_to "Add Friend", user_user_relationships_url(current_user, status: "pending", friend_id: @user), class: "rounded text-slate-800 bg-lime-100 hover:bg-lime-200 text-sm py-0 px-3" %>
+          <% when 'pending' %>
+          <%= link_to "Cancel Request", user_user_relationship_url(current_user, friend_id: @user), class: "rounded text-slate-800 bg-yellow-100 hover:bg-yellow-200 text-sm py-0 px-3", data: { turbo_method: :delete } %>
+          <% when 'friend' %>
+          <%= link_to "Remove Friend", user_user_relationship_url(current_user, friend_id: @user), form_class: "rounded text-slate-800 bg-red-600 hover:bg-red-700 text-sm py-0 px-3", data: { turbo_method: :delete } %>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
+  <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) %>
+</div>
 </div>

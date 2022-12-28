@@ -11,8 +11,17 @@ class User < ApplicationRecord
   has_many :user_relationships
   has_many :relations, through: :user_relationships, source: :friend
 
+  scope :friends, -> { relations.where(status: 'accepted') }
+
   def email_required?
     false
+  end
+
+  def find_relationship_status(other_user)
+    relationship = user_relationships.find_by(friend_id: other_user.id)
+    return 'none' unless relationship
+
+    relationship.status
   end
 
   def display_name
