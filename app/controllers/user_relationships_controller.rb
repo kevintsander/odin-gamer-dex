@@ -45,9 +45,6 @@ class UserRelationshipsController < ApplicationController
       @user_relationship.status = 'pending'
     when 'accept'
       # only the requestee can accept when the status is pending
-      puts '*' * 1000
-      puts @user_relationship.status
-      puts @user_relationship.requestee?(params[:user_id])
       if @user_relationship.status == 'pending' && @user_relationship.requestee?(params[:user_id])
         @user_relationship.status = 'friends'
       end
