@@ -32,6 +32,22 @@ class User < ApplicationRecord
            class_name: 'User',
            source: :friend
 
+  has_many :pending_requests,
+           lambda { |user|
+             RelationshipsQuery
+               .where_in_relationship(user_id: user.id)
+               .where(status: 'pending').where("(direction = '<-' AND user_id = ?) OR (direction = '->' AND friend_id = ?)", user.id, user.id)
+           },
+           inverse_of: :user,
+           dependent: :destroy,
+           class_name: 'UserRelationship'
+
+  has_many :pending_requestors,
+           ->(user) { UsersQuery.relations(user_id: user.id, scope: true) },
+           through: :pending_requests,
+           class_name: 'User',
+           source: :friend
+
   def email_required?
     false
   end
