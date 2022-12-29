@@ -9,7 +9,13 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   has_many :relationships,
-           ->(user) { RelationshipsQuery.bidirectional(user_id: user.id) },
+           ->(user) { RelationshipsQuery.where_in_relationship(user_id: user.id) },
+           inverse_of: :user,
+           dependent: :destroy,
+           class_name: 'UserRelationship'
+
+  has_many :friendships,
+           ->(user) { RelationshipsQuery.where_in_relationship(user_id: user.id).where(status: 'friends') },
            inverse_of: :user,
            dependent: :destroy,
            class_name: 'UserRelationship'
@@ -20,12 +26,22 @@ class User < ApplicationRecord
            class_name: 'User',
            source: :friend
 
+  has_many :friends,
+           ->(user) { UsersQuery.relations(user_id: user.id, scope: true) },
+           through: :friendships,
+           class_name: 'User',
+           source: :friend
+
   def email_required?
     false
   end
 
   def find_relationship(other_user)
-    relationships.where(user_id: other_user.id).or(relationships.where(friend_id: other_user.id)).first
+    if other_user.id < id
+      relationships.where(user_id: other_user.id).first
+    else
+      relationships.where(friend_id: other_user.id).first
+    end
   end
 
   def relationship_status(other_user)

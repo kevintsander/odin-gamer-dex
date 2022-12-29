@@ -1,7 +1,7 @@
 module RelationshipsQuery
   extend self
 
-  def bidirectional(user_id:)
+  def where_in_relationship(user_id:)
     # unscope is only needed when coming through the User model has_many
     # association which will automatically add a where clause
     relationships.unscope(where: :user_id)
