@@ -1,5 +1,4 @@
 class UserRelationshipsController < ApplicationController
-  before_action :find_user, only: %i[create update destroy]
   before_action :load_relationship, only: %i[create update destroy]
 
   def create
@@ -28,12 +27,9 @@ class UserRelationshipsController < ApplicationController
 
   private
 
-  def find_user
-    @user = User.find(params[:user_id])
-  end
-
   def load_relationship
-    @user_relationship = @user.user_relationships.find_or_initialize_by(friend_id: params[:friend_id])
+    id_order = [params[:user_id].to_i, params[:friend_id].to_i].minmax
+    @user_relationship = UserRelationship.find_or_initialize_by(user_id: id_order.first, friend_id: id_order.last)
     @user_relationship.status = params[:status]
   end
 end

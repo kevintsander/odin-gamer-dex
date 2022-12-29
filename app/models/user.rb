@@ -8,18 +8,30 @@ class User < ApplicationRecord
   has_many :posts
   has_one_attached :avatar
 
-  has_many :user_relationships
-  has_many :relations, through: :user_relationships, source: :friend
+  has_many :relationships,
+           ->(user) { RelationshipsQuery.bidirectional(user_id: user.id) },
+           inverse_of: :user,
+           dependent: :destroy,
+           class_name: 'UserRelationship'
 
-  scope :friends, -> { relations.where(status: 'accepted') }
+  has_many :relations,
+           ->(user) { UsersQuery.relations(user_id: user.id, scope: true) },
+           through: :relationships,
+           class_name: 'User',
+           source: :friend
 
   def email_required?
     false
   end
 
-  def find_relationship_status(other_user)
-    relationship = user_relationships.find_by(friend_id: other_user.id)
-    return 'none' unless relationship
+  def find_relationship(other_user)
+    relationships.where(user_id: other_user.id).or(relationships.where(friend_id: other_user.id)).first
+  end
+
+  def relationship_status(other_user)
+    return 'self' if other_user.id == id
+
+    return 'none' unless relationship = find_relationship(other_user)
 
     relationship.status
   end

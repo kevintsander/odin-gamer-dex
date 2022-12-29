@@ -6,7 +6,7 @@
       <h2 class="user-username text-3xl font-semibold text-slate-300 drop-shadow-md"><%= @user.display_name %></h2>
       <% if current_user %>
         <%= turbo_frame_tag "user-relationship" do %>
-          <% case current_user.find_relationship_status(@user) %>
+          <% case current_user.relationship_status(@user) %>
           <% when 'none' %>
           <%= button_to "Add Friend", user_user_relationships_url(current_user, status: "pending", friend_id: @user), class: "rounded text-slate-800 bg-lime-100 hover:bg-lime-200 text-sm py-0 px-3" %>
           <% when 'pending' %>
