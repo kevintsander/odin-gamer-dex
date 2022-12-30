@@ -1,1 +1,1 @@
-<%= turbo_stream.prepend "posts-container", partial: 'post', locals: { post: @post } %>
+<%= turbo_stream.prepend "posts-container", partial: 'post', locals: { post: @post, user: @user } %>

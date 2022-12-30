@@ -1,5 +1,5 @@
 <%= turbo_stream.append "posts-container" do %>
-  <%= render @posts %>
+  <%= render @posts, user: @user %>
 <% end %>
 <% if @pagy.next.present? %>
   <%= turbo_stream.replace "pagination" do %>
