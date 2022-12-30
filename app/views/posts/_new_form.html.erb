@@ -1,0 +1,11 @@
+<%= form_with model: post, url: [user, post], class: 'flex gap-4' do |f| %>
+  <%= f.text_field :body, class: 'input-main flex-grow' %>
+  <div class="file-attach">
+    <%= f.label :images do %>
+      <%= inline_svg_tag 'image.svg', size: '40*40', class: "stroke-violet-400 hover:stroke-violet-300" %>
+    <% end %>
+    <%= f.file_field :images, multiple: true, class: 'hidden' %>
+  </div>
+
+  <%= f.submit 'Add Post', class: 'btn btn-main' %>
+<% end %>

@@ -1,6 +1,7 @@
 <%= turbo_frame_tag @post do %>
   <%= form_with model: [@user, @post], class: "post-form p-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg flex flex-col justify-between" do |f| %>
     <%= f.text_field :body %>
+    <%= f.file_field :images, multiple: true%>
     <div class="post-form-buttons self-end"><%= f.submit %></div>
   <% end %>
 <% end %>

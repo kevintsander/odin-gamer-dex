@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_user, only: %i[index create edit show update]
-  before_action :set_post, only: %i[edit show update]
+  before_action :set_post, only: %i[edit show update destroy]
 
   def index
     @user = User.find(params[:user_id])
     @page_size = 10
-    @pagy, @posts = pagy_countless(@user.posts.order(created_at: :desc), items: @page_size)
+    @pagy, @posts = pagy_countless(@user.posts.order(created_at: :desc), items: @page_size, overflow: :empty_page)
     @post = @user.posts.new
 
     respond_to do |format|
@@ -40,10 +40,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    respond_to do |format|
+      if @post.destroy
+        format.turbo_stream
+      else
+        format.html { render :index, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:body, images: [])
   end
 
   def set_user

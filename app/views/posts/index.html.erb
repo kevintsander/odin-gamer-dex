@@ -2,7 +2,7 @@
 
   <%= turbo_frame_tag id="Posts" do %>
     <div class="post-main-container flex flex-col gap-8">
-      <%= render 'form', post: @post, user: @user if current_user %>
+      <%= render 'new_form', post: @post, user: @user if current_user %>
       <div id="posts-container" class="flex flex-col gap-1">
         <%# append posts from turb stream here %>
       </div>

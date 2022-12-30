@@ -1,10 +1,20 @@
 <%= turbo_frame_tag post do %>
   <div class="post p-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg flex flex-col justify-between">
     <p><%= post.body %></p>
+    <% if post.images.present? %>
+      <div class="images flex gap-2">
+        <% post.images.each do |image| %>
+          <%= link_to image do %>
+            <%= image_tag image.variant(resize_to_limit: [150, 100]) %>
+          <% end %>
+        <% end%>
+      </div>
+    <% end %>
     <div class="post-nav flex items-center justify-between">
       <p><%= display_date_time(post.created_at) %></p>
       <div class="post-buttons">
-        <%= link_to "Edit Post", edit_user_post_path(user, post), data: { turbo_method: :get } %>
+        <%= link_to "Edit Post", edit_user_post_path(user, post) %>
+        <%= link_to "Delete Post", user_post_path(user, post), data: { turbo_method: :delete } %>
       </div>
     </div>
   </div>
