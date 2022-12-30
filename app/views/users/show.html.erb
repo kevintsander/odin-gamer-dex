@@ -4,9 +4,7 @@
     <div class="user-content-top mb-4">
       <h2 class="user-username text-3xl font-semibold text-slate-300 drop-shadow-md"><%= @user.display_name %></h2>
       <% if current_user %>
-        <%= turbo_frame_tag "relationship-bar" do %>
-          <%= render 'relationship_bar', friend_id: @user.id %>
-        <% end %>
+        <%= render 'relationship_bar', friend_id: @user.id %>
       <% end %>
     </div>
     <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) %>
