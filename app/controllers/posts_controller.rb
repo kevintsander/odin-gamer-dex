@@ -19,7 +19,7 @@ class PostsController < ApplicationController
       if @post.save
         format.turbo_stream
       else
-        format.html { ender :index, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end

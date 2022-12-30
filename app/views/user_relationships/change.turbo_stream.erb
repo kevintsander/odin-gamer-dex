@@ -1,0 +1,2 @@
+<%= turbo_stream.update "nav-friends", partial: "shared/nav_friends" %>
+<%= turbo_stream.update "relationship-bar", partial: "users/relationship_bar", locals: { friend_id: @friend_id } %>

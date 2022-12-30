@@ -1,27 +1,14 @@
 <div class="main-container user-layout p-4 rounded-tl-[108px]">
-
-  <%= render 'profile-card' %>
+  <%= render 'profile_card' %>
   <div class="user-content">
     <div class="user-content-top mb-4">
       <h2 class="user-username text-3xl font-semibold text-slate-300 drop-shadow-md"><%= @user.display_name %></h2>
       <% if current_user %>
-        <%= turbo_frame_tag "user-relationship" do %>
-          <div class="flex gap-2 text-sm font-semibold">
-            <% case relation_setting(current_user, @user) %>
-            <% when 'none' %>
-            <%= button_to "Add Friend", user_user_relationships_url(current_user, type: "add", friend_id: @user), class: "rounded text-lime-300 border border-lime-300 hover:bg-lime-300 hover:text-lime-800 py-0 px-2" %>
-            <% when 'pending me' %>
-            <%= button_to "Accept Request", user_user_relationships_url(current_user, type: "accept", friend_id: @user), class: "rounded text-lime-300 border border-lime-300 hover:bg-lime-300 hover:text-lime-800 py-0 px-2" %>
-            <%= link_to "Deny Request", user_user_relationship_url(current_user, friend_id: @user), class: "rounded text-red-300 border border-red-300 hover:bg-red-300 hover:text-red-800 py-0 px-2", data: { turbo_method: :delete } %>
-            <% when 'pending other' %>
-            <%= link_to "Cancel Request", user_user_relationship_url(current_user, friend_id: @user), class: "rounded text-yellow-300 border border-yellow-300 hover:bg-yellow-300 hover:text-yellow-800 py-0 px-2", data: { turbo_method: :delete } %>
-            <% when 'friends' %>
-            <%= link_to "Remove Friend", user_user_relationship_url(current_user, friend_id: @user), class: "rounded text-red-300 border border-red-300 hover:bg-red-300 hover:text-red-800 py-0 px-2", data: { turbo_method: :delete } %>
-          <% end %>
-        </div>
+        <%= turbo_frame_tag "relationship-bar" do %>
+          <%= render 'relationship_bar', friend_id: @user.id %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) %>
   </div>
-  <%= turbo_frame_tag id="Posts", src: user_posts_path(@user) %>
-</div>
 </div>

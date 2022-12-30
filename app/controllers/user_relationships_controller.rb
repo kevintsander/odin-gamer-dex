@@ -2,26 +2,18 @@ class UserRelationshipsController < ApplicationController
   before_action :load_relationship, only: %i[create update destroy]
 
   def create
-    change_relationship_status!
-    if @user_relationship.save
-      redirect_to user_path(params[:friend_id])
-    else
-      render user_path(params[:friend_id]), status: :unprocessable_entity
-    end
+    save_relationship
   end
 
   def update
-    change_relationship_status!
-    if @user_relationship.save
-      redirect_to user_path(params[:friend_id])
-    else
-      render user_path(params[:friend_id]), status: :unprocessable_entity
-    end
+    save_relationship
   end
 
   def destroy
     if @user_relationship.destroy
-      redirect_to user_path(params[:friend_id])
+      respond_to do |format|
+        format.turbo_stream { render 'change' }
+      end
     else
       render user_path(params[:friend_id]), status: :unprocessable_entity
     end
@@ -29,13 +21,24 @@ class UserRelationshipsController < ApplicationController
 
   private
 
+  def save_relationship
+    change_relationship_status!
+    if @user_relationship.save
+      respond_to do |format|
+        format.turbo_stream { render 'change' }
+      end
+    else
+      render user_path(params[:friend_id]), status: :unprocessable_entity
+    end
+  end
+
   def load_relationship
     user_id = params[:user_id].to_i
-    other_id = params[:friend_id].to_i
-    id_order = [user_id, other_id].minmax
+    @friend_id = params[:friend_id].to_i
+    id_order = [user_id, @friend_id].minmax
 
     @user_relationship = UserRelationship.find_or_initialize_by(user_id: id_order.first, friend_id: id_order.last)
-    @user_relationship.direction ||= UserRelationship.get_direction(user_id, other_id) # only set direction on initial request
+    @user_relationship.direction ||= UserRelationship.get_direction(user_id, @friend_id) # only set direction on initial request
     @user_relationship
   end
 

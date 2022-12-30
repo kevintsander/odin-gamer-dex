@@ -1,7 +1,9 @@
 <div class="user-left-panel flex flex-col gap-4">
-  <div class="avatar-container bg-slate-400 avatar avatar-main w-[200px] h-[200px]">
+  <div class="avatar-container bg-slate-300 text-slate-600 avatar avatar-main w-[200px] h-[200px] flex items-center justify-center">
     <% if @user.avatar.present? %>
       <%= image_tag @user.avatar.variant(resize_to_fill: [200, nil]), class: "avatar avatar-main" %>
+    <% else %>
+      <p>No Avatar</p>
     <% end %>
   </div>
   <div class="rounded-lg bg-violet-400 text-slate-800 shadow-xl shadow-slate-800 p-2 flex flex-col items-start gap-4">

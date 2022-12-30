@@ -1,7 +1,7 @@
 module UsersHelper
-  def relation_setting(user, other_user)
-    return 'self' if user.id == other_user.id
-    return 'none' unless relationship = user.find_relationship(other_user)
+  def relation_setting(user, other_user_id)
+    return 'self' if user.id == other_user_id
+    return 'none' unless relationship = user.find_relationship(other_user_id)
 
     if relationship.status == 'pending' && relationship.requestee?(user.id)
       'pending me'

@@ -52,20 +52,12 @@ class User < ApplicationRecord
     false
   end
 
-  def find_relationship(other_user)
-    if other_user.id < id
-      relationships.where(user_id: other_user.id).first
+  def find_relationship(other_user_id)
+    if other_user_id < id
+      relationships.where(user_id: other_user_id).first
     else
-      relationships.where(friend_id: other_user.id).first
+      relationships.where(friend_id: other_user_id).first
     end
-  end
-
-  def relationship_status(other_user)
-    return 'self' if other_user.id == id
-
-    return 'none' unless relationship = find_relationship(other_user)
-
-    relationship.status
   end
 
   def display_name
