@@ -42,10 +42,6 @@
         @apply flex items-center gap-4 text-slate-200 font-semibold;
     }
 
-    .main-container {
-        @apply bg-violet-900 text-violet-50 rounded-2xl drop-shadow-lg;
-    }
-
     .input-main {
         @apply bg-slate-50 text-slate-900 rounded-lg shadow-inner shadow-slate-400;
     }
@@ -65,30 +61,6 @@
     .h2-main {
         @apply text-2xl mb-4 font-semibold;
         @apply text-xl mb-4 font-semibold;
-    }
-
-    .h3-main {
-        @apply mb-3 font-semibold;
-    }
-
-    .posts-container {
-        @apply flex flex-col gap-1;
-    }
-
-    .post {
-        @apply p-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg;
-    }
-
-    .post-placeholder>span {
-        @apply bg-slate-200
-    }
-
-    .avatar {
-        @apply rounded-full;
-    }
-
-    .avatar-main {
-        @apply shadow-lg shadow-slate-800;
     }
 
 }

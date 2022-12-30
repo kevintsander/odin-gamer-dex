@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="bg-violet-900 text-slate-100 rounded-2xl drop-shadow-lg py-12 px-16">
   <h2 class="h2-main">Edit <%= resource_name.to_s.humanize %></h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-col items-start gap-2" }) do |f| %>
@@ -39,7 +39,7 @@
     <div class="field">
       <%= f.label :avatar%>
       <% if resource.avatar.attached? %>
-        <%= image_tag resource.avatar.variant(resize_to_fill: [150, nil]), class: "avatar mb-4" %>
+        <%= image_tag resource.avatar.variant(resize_to_fill: [150, nil]), class: "rounded-full mb-4" %>
       <% end %>
       <%= f.file_field :avatar %>
     </div>

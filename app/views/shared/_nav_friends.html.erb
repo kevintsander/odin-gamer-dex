@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "nav-friends" do %>
-  <div data-controller="dropdown" class="relative">
-    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide"><%= image_tag 'friends.svg', size: '32x32' %></button>
+  <div data-controller="dropdown" class="relative h-[32px]">
+    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide"><%= inline_svg_tag 'friends.svg', size: '32*32', class: 'stroke-violet-400 hover:fill-violet-400' %></button>
     <% if current_user.pending_requestors.present? %>
       <div class="absolute rounded-full bg-red-400 w-[20%] h-[20%] top-[5%] right-[5%]"></div>
     <% end %>
@@ -20,7 +20,7 @@
       <% end %>
       <p class="text-xs font-semibold bg-slate-900 text-violet-400 px-1 pb-1">Friends</p>
       <% if current_user.friends.present? %>
-        <% current_user_friends.each do |friend| %>
+        <% current_user.friends.each do |friend| %>
           <%= link_to friend.display_name, user_path(friend), class: "border border-violet-400 hover:bg-violet-400 px-2" %>
         <% end %>
       <% else %>

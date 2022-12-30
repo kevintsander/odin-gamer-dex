@@ -88,3 +88,6 @@ gem 'figaro', '~> 1.2'
 
 # pagination
 gem 'pagy', '~> 6.0'
+
+# inline svgs (allow css styling)
+gem 'inline_svg', '~> 1.8'
