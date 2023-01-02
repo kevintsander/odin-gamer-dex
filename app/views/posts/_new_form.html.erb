@@ -4,7 +4,7 @@
     <%= f.text_field :body, class: 'input-main flex-grow' %>
     <div class="file-attach ml-2">
       <%= f.label :images do %>
-        <%= inline_svg_tag 'image.svg', size: '40*40', class: "stroke-violet-400 hover:stroke-violet-300" %>
+        <%= inline_svg_tag 'image.svg', size: '32*32', class: "stroke-violet-400 hover:stroke-violet-300" %>
       <% end %>
       <%= f.file_field :images, multiple: true, class: 'hidden', data: { attachment_preview_target: "attachmentInput", action: "change->attachment-preview#setPreviewImages" } %>
     </div>
