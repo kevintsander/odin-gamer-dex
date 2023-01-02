@@ -22,3 +22,12 @@ I also had several places where I needed to check the existence of an object (do
 I suspect that #exists? would be more useful if the underlying data either did not need to be displayed, or if it was to be loaded in a separate asynchronous request.
 
 There are other opportunities for further optimizations by further breaking down sections and components into more Turbo Frames operating in parallel.
+
+# Infinite Post Scroll
+
+I am using Turbo Streams and pagination with the Pagy gem to load new post pages as the user scrolls down.
+
+# Attachment Previews
+
+The default HTML file picker does not show image previews, so I created a Stimulus controller which will add the image previews using Javascript.
+When editing a post, Rails will replace the old attachments and add the new attachment (or none if no selection made); A better UX would allow the user to keep or selectively delete the existing attachments, but that was out of scope for this project.
