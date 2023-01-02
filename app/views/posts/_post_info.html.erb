@@ -1,0 +1,5 @@
+<p><%= display_date_time(post.created_at) %></p>
+<% if post.reactions.present? %>
+  <p>|</p>
+  <p><%= pluralize post.reactions.length, 'like' %></p>
+<% end %>

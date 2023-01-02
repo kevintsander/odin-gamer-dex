@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[twitter]
 
   has_many :posts
+  has_many :reactions
   has_one_attached :avatar
 
   has_many :relationships,

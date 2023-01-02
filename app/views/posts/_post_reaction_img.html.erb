@@ -1,0 +1,5 @@
+<% if post.reactions.where(user_id: current_user.id).present? %>
+  <%= inline_svg_tag 'heart.svg', size: '24*24', class: 'stroke-red-600 fill-red-600 hover:fill-red-200' %>
+<% else %>
+  <%= inline_svg_tag 'heart.svg', size: '24*24', class: 'stroke-red-600 hover:fill-red-200' %>
+<% end %>
