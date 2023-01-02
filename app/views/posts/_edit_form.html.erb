@@ -1,0 +1,15 @@
+<%= turbo_frame_tag post do %>
+  <%= form_with model: [user, post], class: "post-form p-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg flex flex-col gap-4 justify-between", data: { controller: 'attachment-preview', attachment_preview_width_value: 150, attachment_preview_height_value: 100, attachment_preview_wrapper_class: "border border-lime-400 flex items-center justify-center" } do |f| %>
+    <%= f.text_field :body %>
+    <% if post.images.present? %>
+      <div class="flex gap-2" data-attachment-preview-target="imgContainer">
+      </div>
+    <% end %>
+    <%= f.file_field :images, multiple: true, data: { attachment_preview_target: "attachmentInput", action: "change->attachment-preview#setPreviewImages" } %>
+    <div class="post-form-buttons self-end">
+      <%= button_tag type: :submit do %>
+        <%= inline_svg_tag 'check.svg', size: '24*24', class: 'stroke-lime 600 hover:fill-lime-300' %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
