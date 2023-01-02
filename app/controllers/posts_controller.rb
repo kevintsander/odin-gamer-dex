@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @page_size = 10
-    @pagy, @posts = pagy_countless(@user.posts.includes(:reactions).with_attached_images.order(created_at: :desc), items: @page_size,
-                                                                                                                   overflow: :empty_page)
+    @pagy, @posts = pagy_countless(@user.posts.includes(reactions: :user).with_attached_images.order(created_at: :desc), items: @page_size,
+                                                                                                                         overflow: :empty_page)
     @post = @user.posts.new
 
     respond_to do |format|
