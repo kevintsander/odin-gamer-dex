@@ -5,13 +5,20 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @page_size = 10
-    @pagy, @posts = pagy_countless(@user.posts.includes(reactions: :user).with_attached_images.order(created_at: :desc), items: @page_size,
-                                                                                                                         overflow: :empty_page)
+    @feed = params[:feed]
+    if @feed && @feed == 'true'
+      @pagy, @posts = pagy_countless(@user.posts.union(@user.friend_posts).includes(:user, reactions: :user).with_attached_images.order(created_at: :desc), items: @page_size,
+                                                                                                                                                            overflow: :empty_page)
+    else
+      @pagy, @posts = pagy_countless(@user.posts.includes(:user, reactions: :user).with_attached_images.order(created_at: :desc), items: @page_size,
+                                                                                                                                  overflow: :empty_page)
+
+    end
     @post = @user.posts.new
 
     respond_to do |format|
-      format.html
       format.turbo_stream
+      format.html
     end
   end
 

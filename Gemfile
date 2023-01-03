@@ -91,3 +91,6 @@ gem 'pagy', '~> 6.0'
 
 # inline svgs (allow css styling)
 gem 'inline_svg', '~> 1.8'
+
+# union queries
+gem 'active_record_union'

@@ -1,14 +1,23 @@
 <div class="bg-violet-900 text-violet-50 rounded-2xl drop-shadow-lg">
 
   <%= turbo_frame_tag id="Posts" do %>
-    <div class="post-main-container flex flex-col gap-8">
+    <div class="post-main-container flex flex-col gap-2">
       <%= render 'new_form', post: @post, user: @user if current_user %>
-      <div id="posts-container" class="flex flex-col gap-1">
-        <%# append posts from turb stream here %>
+      <% if @user == current_user %>
+        <% if @feed == 'true' %>
+          <%= link_to 'Self Only', user_posts_path(@user, feed: 'false') %>
+        <% else %>
+          <%= link_to 'Feed', user_posts_path(@user, feed: 'true') %>
+        <%end%>
       </div>
-      <%= turbo_frame_tag "pagination", src: user_posts_path(@user, format: :turbo_stream), loading: :lazy do %>
-        <%= render 'posts_placeholder', page_size: @page_size %>
-      <% end %>
+    <% end %>
+    <div id="posts-container" class="flex flex-col gap-1">
+      <%# append posts from turbo stream here %>
     </div>
-  <% end %>
+
+    <%= turbo_frame_tag "pagination", src: user_posts_path(@user, feed: @feed, format: :turbo_stream), loading: :lazy do %>
+      <%= render 'posts_placeholder', page_size: @page_size %>
+    <% end %>
+  </div>
+<% end %>
 </div>

@@ -49,6 +49,11 @@ class User < ApplicationRecord
            class_name: 'User',
            source: :friend
 
+  has_many :friend_posts,
+           through: :friends,
+           class_name: 'Post',
+           source: :posts
+
   def email_required?
     false
   end
