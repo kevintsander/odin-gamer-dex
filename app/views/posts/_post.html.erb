@@ -1,16 +1,28 @@
 <%= turbo_frame_tag post do %>
-  <div class="post p-4 bg-slate-100 text-slate-900 rounded drop-shadow-lg flex flex-col justify-between">
-    <p><%= post.body %></p>
-    <% if post.images.present? %>
-      <div class="images flex gap-2">
-        <% post.images.each do |image| %>
-          <%= link_to image do %>
-            <%= image_tag image.variant(resize_to_limit: [150, 100]) %>
-          <% end %>
-        <% end%>
-      </div>
-    <% end %>
-    <div class="post-nav flex items-end justify-between text-slate-500 text-xs">
+  <div class="post bg-slate-100 text-slate-900 rounded drop-shadow-lg flex flex-col justify-between overflow-hidden">
+    <div class="post-user-info bg-slate-200 py-1 px-2 flex items-center gap-2">
+      <% if post.user.avatar.attached? %>
+        <%= image_tag post.user.avatar.variant(resize_to_fill: [32, 32]), class: "rounded-full" %>
+      <% end %>
+      <% if current_user != post.user %>
+        <p class="text-sm text-lime-600 font-bold"><%= post.user.display_name %></p>
+      <% else %>
+        <p class="text-sm text-violet-600 font-bold"><%= post.user.display_name %></p>
+      <% end %>
+    </div>
+    <div class="post-body px-4 py-2">
+      <p><%= post.body %></p>
+      <% if post.images.present? %>
+        <div class="images flex gap-2">
+          <% post.images.each do |image| %>
+            <%= link_to image do %>
+              <%= image_tag image.variant(resize_to_limit: [150, 100]) %>
+            <% end %>
+          <% end%>
+        </div>
+      <% end %>
+    </div>
+    <div class="post-nav pt-1 pb-2 px-4 flex items-end justify-between text-slate-500 text-xs">
       <div class="post-info flex gap-2" id="<%= dom_id(post, :info) %>">
         <%= render 'post_info', post: post %>
       </div>

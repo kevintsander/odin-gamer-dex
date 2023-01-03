@@ -1,9 +1,3 @@
-<% if current_user != post.user %>
-  <p class="text-xs text-violet-600"><%= post.user.display_name %></p>
-<% else %>
-  <p class="text-xs">You</p>
-<% end %>
-<p>|</p>
 <p><%= display_date_time(post.created_at) %></p>
 <% if post.reactions.present? %>
   <p>|</p>
