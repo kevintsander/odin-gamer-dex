@@ -5,9 +5,9 @@
       <%= render 'new_form', post: @post, user: @user if current_user %>
       <% if @user == current_user %>
         <% if @feed == 'true' %>
-          <%= link_to 'Self Only', user_posts_path(@user, feed: 'false') %>
+          <%= link_to 'Self Only', user_posts_path(@user, feed: 'false'), data: { turbo_action: :replace } %>
         <% else %>
-          <%= link_to 'Feed', user_posts_path(@user, feed: 'true') %>
+          <%= link_to 'Feed', user_posts_path(@user, feed: 'true'), data: { turbo_action: :replace } %>
         <%end%>
       </div>
     <% end %>

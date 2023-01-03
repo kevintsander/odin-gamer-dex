@@ -31,3 +31,7 @@ I am using Turbo Streams and pagination with the Pagy gem to load new post pages
 
 The default HTML file picker does not show image previews, so I created a Stimulus controller which will add the image previews using Javascript.
 When editing a post, Rails will replace the old attachments and add the new attachment (or none if no selection made); A better UX would allow the user to keep or selectively delete the existing attachments, but that was out of scope for this project.
+
+# Feed vs Self Navigation
+
+The navigation between Feed vs Self Only posts is located within a Turbo Frame, and originally didn't update the page navigation with the `feed` parameter when it was changed within the Turbo Frame. This caused refreshes to be frustrating as the toggle would reset. I found [this Github PR](https://github.com/hotwired/turbo/pull/398) that allows adding `data-turbo-action="replace"` to links to update the browser history state to resolve this problem.
