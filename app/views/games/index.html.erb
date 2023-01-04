@@ -6,7 +6,7 @@
   <% end %>
 </div>
 <% if @games %>
-  <div class="games-container flex flex-col gap-2">
+  <div class="games-container flex flex-wrap gap-2">
     <%= render partial: 'game', collection: @games, as: :game %>
   </div>
 <% end %>

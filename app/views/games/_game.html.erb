@@ -1,3 +1,4 @@
-<div class="bg-slate-100 text-slate-900 rounded drop-shadow-lg">
-  <p><%= game["name"] %></p>
+<div class="w-32 bg-slate-100 text-slate-900 text-sm rounded drop-shadow-lg items-center flex flex-col overflow-hidden">
+  <%= image_tag game["image"]["small_url"], class: "max-w-32" %>
+  <p class="px-2 py-1"><%= game["name"] %></p>
 </div>
