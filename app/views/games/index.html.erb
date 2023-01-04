@@ -1,0 +1,12 @@
+<div class="game-search">
+  <%= form_with url: games_path, method: :get do |search_f| %>
+    <%= search_f.label :game %>
+    <%= search_f.text_field :game %>
+    <%= search_f.submit %>
+  <% end %>
+</div>
+<% if @games %>
+  <div class="games-container flex flex-col gap-2">
+    <%= render partial: 'game', collection: @games, as: :game %>
+  </div>
+<% end %>

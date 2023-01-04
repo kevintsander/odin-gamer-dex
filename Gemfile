@@ -94,3 +94,6 @@ gem 'inline_svg', '~> 1.8'
 
 # union queries
 gem 'active_record_union'
+
+# Giant Bomb (video game) API
+gem 'giantbomb-api', '~> 1.6.0'

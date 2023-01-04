@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :user_relationships, only: %i[create update destroy], param: :friend_id
   end
 
+  resources :games
+
   scope 'posts/:id' do
     resources :post_reactions, controller: :reactions, only: %i[create]
   end
