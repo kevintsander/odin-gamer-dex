@@ -54,7 +54,8 @@ class User < ApplicationRecord
            class_name: 'Post',
            source: :posts
 
-  has_and_belongs_to_many :games
+  has_many :games_user
+  has_many :games, through: :games_user
 
   def email_required?
     false

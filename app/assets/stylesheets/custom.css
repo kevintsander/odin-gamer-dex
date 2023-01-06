@@ -4,10 +4,10 @@
 
 .user-layout {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 4fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
-        "left-panel content";
+        "left-panel content right-panel";
     gap: 1rem;
 }
 
@@ -17,6 +17,10 @@
 
 .user-left-panel {
     grid-area: left-panel;
+}
+
+.user-right-panel {
+    grid-area: right-panel;
 }
 
 .user-content {

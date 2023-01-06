@@ -1,3 +1,5 @@
+# DO NOT AUTO FORMAT THIS
+
 # frozen_string_literal: true
 
 class TurboDeviseController < ApplicationController

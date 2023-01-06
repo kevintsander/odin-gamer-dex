@@ -30,11 +30,13 @@
         <%= link_to post_reactions_path(post), data: { turbo_method: :post }, id: dom_id(post, :reaction) do %>
           <%= render 'post_reaction_img', post: post %>
         <% end %>
-        <%= link_to edit_user_post_path(user, post) do %>
-          <%= inline_svg_tag 'edit.svg', size: '24*24', class: 'stroke-violet-500 hover:stroke-yellow-600 hover:fill-yellow-200' %>
-        <% end %>
-        <%= link_to user_post_path(user, post), data: { turbo_method: :delete } do %>
-          <%= inline_svg_tag 'delete.svg', size: '24*24', class: 'stroke-violet-500 hover:stroke-red-600 hover:fill-red-200' %>
+        <% if current_user == post.user %>
+          <%= link_to edit_user_post_path(user, post) do %>
+            <%= inline_svg_tag 'edit.svg', size: '24*24', class: 'stroke-violet-500 hover:stroke-yellow-600 hover:fill-yellow-200' %>
+          <% end %>
+          <%= link_to user_post_path(user, post), data: { turbo_method: :delete } do %>
+            <%= inline_svg_tag 'delete.svg', size: '24*24', class: 'stroke-violet-500 hover:stroke-red-600 hover:fill-red-200' %>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -1,18 +1,15 @@
-<div class="user-left-panel flex flex-col gap-4">
-  <div class="avatar-container bg-slate-300 text-slate-600 rounded-full shadow-lg shadow-slate-800 border-2 border-violet-300 w-[200px] h-[200px] flex items-center justify-center overflow-hidden">
-    <% if @user.avatar.present? %>
-      <%= image_tag @user.avatar.variant(resize_to_fill: [200, nil]) %>
-    <% else %>
-      <p>No Avatar</p>
-    <% end %>
-  </div>
-  <div class="rounded-lg bg-violet-400 text-slate-800 shadow-lg shadow-slate-800 p-2 flex flex-col items-start gap-4">
-
-    <% [:name, :email, :age].each do |item| %>
-      <div class="flex flex-col">
-        <%= content_tag :p, "/#{item}", class: "font-digital text-xs" %>
-        <%= content_tag :p, @user.send(item) %>
-      </div>
-    <% end %>
-  </div>
+<div class="avatar-container bg-slate-300 text-slate-600 rounded-full shadow-lg shadow-slate-800 border-2 border-violet-300 w-[200px] h-[200px] flex items-center justify-center overflow-hidden">
+  <% if @user.avatar.present? %>
+    <%= image_tag @user.avatar.variant(resize_to_fill: [200, nil]) %>
+  <% else %>
+    <p>No Avatar</p>
+  <% end %>
+</div>
+<div class="rounded-lg bg-violet-400 text-slate-800 shadow-lg shadow-slate-800 p-2 flex flex-col items-start gap-4">
+  <% [:name, :email, :age].each do |item| %>
+    <div class="flex flex-col">
+      <%= content_tag :p, "/#{item}", class: "font-digital text-xs" %>
+      <%= content_tag :p, @user.send(item) %>
+    </div>
+  <% end %>
 </div>

@@ -21,6 +21,7 @@ module GamerDex
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
-    config.autoload_paths << "#{Rails.root}/lib"
+    config.autoload_paths.push("#{Rails.root}/lib",
+                               "#{Rails.root}/services")
   end
 end

@@ -1,0 +1,5 @@
+<%= turbo_stream.remove "no-user-games"%>
+<%= turbo_stream.append "user-games" do %>
+  <%= render "game", user: @user, game: @game %>
+<% end %>
+<%= turbo_stream.replace "search-games" %>

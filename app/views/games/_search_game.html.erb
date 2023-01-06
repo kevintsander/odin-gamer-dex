@@ -1,0 +1,8 @@
+<%= form_with model: found_game, url: [user, found_game], class: "w-32 bg-slate-100 text-slate-900 text-sm rounded drop-shadow-lg items-center flex flex-col overflow-hidden" do |game_f| %>
+  <%= game_f.hidden_field :game_id, value: game_info.id %>
+  <%= game_f.hidden_field :name, value: game_info.name %>
+  <%= button_tag type: :submit do %>
+    <%= image_tag game_info.image["small_url"], class: "max-w-32" %>
+    <p class="px-2 py-1"><%= game_info.name %></p>
+  <% end %>
+<% end %>
