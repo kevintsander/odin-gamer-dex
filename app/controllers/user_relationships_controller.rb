@@ -34,11 +34,11 @@ class UserRelationshipsController < ApplicationController
 
   def load_relationship
     user_id = params[:user_id].to_i
-    @friend_id = params[:friend_id].to_i
-    id_order = [user_id, @friend_id].minmax
+    @friend = User.find(params[:friend_id])
+    id_order = [user_id, @friend.id].minmax
 
     @user_relationship = UserRelationship.find_or_initialize_by(user_id: id_order.first, friend_id: id_order.last)
-    @user_relationship.direction ||= UserRelationship.get_direction(user_id, @friend_id) # only set direction on initial request
+    @user_relationship.direction ||= UserRelationship.get_direction(user_id, @friend.id) # only set direction on initial request
     @user_relationship
   end
 

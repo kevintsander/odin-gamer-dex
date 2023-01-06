@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(friend, 'friend') do %>
+  <%= link_to user_path(friend), class:"bg-slate-100 text-slate-900 text-sm rounded drop-shadow-lg px-2 py-1 flex gap-1 items-center justify-between overflow-hidden" do %>
+    <div class="friend flex gap-1 items-center">
+      <% if friend.avatar.attached? %>
+        <%= image_tag friend.avatar.variant(resize_to_fill: [32, 32]), class: "rounded-full" %>
+      <%else%>
+        <div class="w-[32px] h-[32px] items-center rounded-full bg-slate-600"></div>
+      <% end %>
+      <p><%= friend.display_name %>
+      </p>
+    </div>
+  <% end %>
+<% end %>

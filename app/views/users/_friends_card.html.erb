@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "friends-card" do %>
+  <h3 class="text-slate-200 text-lg font-semibold">Friends</h3>
+  <div class="rounded-lg bg-violet-400 text-slate-800 shadow-lg shadow-slate-800 p-2 flex flex-col gap-2">
+    <% user.friends.each do |friend| %>
+      <%= render 'users/friend', friend: friend %>
+    <% end %>
+  </div>
+<% end %>

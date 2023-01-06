@@ -13,5 +13,6 @@
   </div>
   <div class="user-right-panel flex flex-col gap-4">
     <%= turbo_frame_tag "user-game-bar", src: user_games_path(@user) %>
+    <%= render 'friends_card', user: @user %>
   </div>
 </div>

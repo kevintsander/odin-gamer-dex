@@ -13,12 +13,12 @@
             <p class="bg-violet-400 text-slate-100 rounded-full px-2 shadow shadow-slate-400">Self Only</p>
           <% end %>
         <% end %>
-        <div id="posts-container" class="flex flex-col gap-1">
-          <%# append posts from turbo stream here %>
-        </div>
-        <%= turbo_frame_tag "pagination", src: user_posts_path(@user, feed: @feed, format: :turbo_stream), loading: :lazy do %>
-          <%= render 'posts_placeholder', page_size: @page_size %>
-        <% end %>
+      <% end %>
+      <div id="posts-container" class="flex flex-col gap-1">
+        <%# append posts from turbo stream here %>
+      </div>
+      <%= turbo_frame_tag "pagination", src: user_posts_path(@user, feed: @feed, format: :turbo_stream), loading: :lazy do %>
+        <%= render 'posts_placeholder', page_size: @page_size %>
       <% end %>
 
     </div>

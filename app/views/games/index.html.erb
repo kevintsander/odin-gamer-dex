@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "user-game-bar" do %>
+  <h3 class="text-slate-200 text-lg font-semibold">Now Playing</h3>
   <div class="rounded-lg bg-violet-400 text-slate-800 shadow-lg shadow-slate-800 p-2 flex flex-col gap-4">
-    <p class="font-digital text-sm">/now playing</p>
     <% unless @user.games.present? %>
       <%= turbo_frame_tag "no-user-games" do %>
         No Games
