@@ -2,4 +2,4 @@
 <%= turbo_stream.append "user-games" do %>
   <%= render "game", user: @user, game: @game %>
 <% end %>
-<%= turbo_stream.replace "search-games" %>
+<%= turbo_stream.replace "found-games" %>

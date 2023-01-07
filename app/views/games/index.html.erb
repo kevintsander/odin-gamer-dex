@@ -19,9 +19,10 @@
       <% end %>
     </div>
     <% if @search %>
-      <% if @search_games.size > 0 %>
-        <%= turbo_frame_tag "search-games", class: "flex flex-col gap-2" do %>
-          <%= render partial: 'search_game', collection: @search_games, as: :game_info, locals: { user: @user, found_game: @found_game } %>
+      <% if @found_games.size > 0 %>
+        <p>Found games:</p>
+        <%= turbo_frame_tag "found-games", class: "flex flex-col gap-2" do %>
+          <%= render partial: 'found_game', collection: @found_games, as: :found_game, locals: { user: @user, search_game: @search_game } %>
         <% end%>
       <% else %>
         <p>No results found.</p>

@@ -3,9 +3,9 @@ class GamesController < ApplicationController
   before_action :set_search, only: [:index]
 
   def index
-    @found_game = Game.new
-    @search_games = GiantBombGameService.find_games(params[:search]) if @search
-    @search_games ||= []
+    @search_game = Game.new
+    @found_games = GiantBombGameService.find_games(params[:search]) if @search
+    @found_games ||= []
   end
 
   # POST users/:user_id/games

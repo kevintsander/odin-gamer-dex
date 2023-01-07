@@ -4,5 +4,24 @@
     <% user.friends.each do |friend| %>
       <%= render 'users/friend', friend: friend %>
     <% end %>
+
+    <div class="user-search">
+      <%= form_with url: user_path(@user), method: :get, class: "text-sm flex gap-2 items-center" do |search_f| %>
+        <%= search_f.text_field :user_search, placeholder: 'Search for user', class: "text-sm py-1 px-2" %>
+        <%= button_tag type: :submit do %>
+          <% inline_svg_tag 'search.svg', size: '24*24' %>
+        <% end %>
+      <% end %>
+    </div>
+    <% if @user_search %>
+      <% if @found_users.size > 0 %>
+        <p>Found users:</p>
+        <%= turbo_frame_tag "found-users", class: "flex flex-col gap-2" do %>
+          <%= render partial: 'friend', collection: @found_users, as: :friend %>
+        <% end%>
+      <% else %>
+        <p>No results found.</p>
+      <% end %>
+    <% end %>
   </div>
 <% end %>
