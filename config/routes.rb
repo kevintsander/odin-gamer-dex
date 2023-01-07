@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   devise_scope :user do
-    root 'users#index'
+    root 'users#current_user_home'
+    # get '/sign-in' => 'devise/sessions#new', as: :login
   end
 end
