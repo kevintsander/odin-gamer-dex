@@ -10,22 +10,24 @@
         <%= render partial: 'game', collection: @user.games, locals: { user: @user } %>
       <% end %>
     <% end %>
-    <div class="game-search">
-      <%= form_with url: user_games_path(@user), method: :get, class: "text-sm flex gap-2 items-center" do |search_f| %>
-        <%= search_f.text_field :search, placeholder: 'Search for game', class: "text-sm py-1 px-2" %>
-        <%= button_tag type: :submit do %>
-          <% inline_svg_tag 'search.svg', size: '24*24' %>
+    <% if @user == current_user %>
+      <div class="game-search">
+        <%= form_with url: user_games_path(@user), method: :get, class: "text-sm flex gap-2 items-center" do |search_f| %>
+          <%= search_f.text_field :search, placeholder: 'Search for game', class: "text-sm py-1 px-2" %>
+          <%= button_tag type: :submit do %>
+            <% inline_svg_tag 'search.svg', size: '24*24' %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <% if @search %>
-      <% if @found_games.size > 0 %>
-        <p>Found games:</p>
-        <%= turbo_frame_tag "found-games", class: "flex flex-col gap-2" do %>
-          <%= render partial: 'found_game', collection: @found_games, as: :found_game, locals: { user: @user, search_game: @search_game } %>
-        <% end%>
-      <% else %>
-        <p>No results found.</p>
+      </div>
+      <% if @search %>
+        <% if @found_games.size > 0 %>
+          <p>Found games:</p>
+          <%= turbo_frame_tag "found-games", class: "flex flex-col gap-2" do %>
+            <%= render partial: 'found_game', collection: @found_games, as: :found_game, locals: { user: @user, search_game: @search_game } %>
+          <% end%>
+        <% else %>
+          <p>No results found.</p>
+        <% end %>
       <% end %>
     <% end %>
   </div>
