@@ -1,3 +1,4 @@
 <%= turbo_stream.update "nav-friends", partial: "shared/nav_friends" %>
-<%= turbo_stream.update "relationship-bar", partial: "users/relationship_bar", locals: { friend_id: @friend.id } %>
-<%= turbo_stream.update "friends-card", partial: "users/friends_card", locals: { user: @friend } %>
+<%= turbo_stream.update "relationship-bar", partial: "users/relationship_bar", locals: { user: @user, relationship: @relationship } %>
+<%= turbo_stream.update "friends-card", partial: "users/friends_card", locals: { user: @user } %>
+<%= turbo_stream.update "relationship-image", partial: "users/relationship_image", locals: { user: @user, relationship: @relationship } %>

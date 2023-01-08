@@ -10,7 +10,7 @@ class UserRelationshipsController < ApplicationController
   end
 
   def destroy
-    if @user_relationship.destroy
+    if @relationship.destroy
       respond_to do |format|
         format.turbo_stream { render 'change' }
       end
@@ -23,7 +23,7 @@ class UserRelationshipsController < ApplicationController
 
   def save_relationship
     change_relationship_status!
-    if @user_relationship.save
+    if @relationship.save
       respond_to do |format|
         format.turbo_stream { render 'change' }
       end
@@ -33,23 +33,23 @@ class UserRelationshipsController < ApplicationController
   end
 
   def load_relationship
-    user_id = params[:user_id].to_i
-    @friend = User.find(params[:friend_id])
-    id_order = [user_id, @friend.id].minmax
+    current_user_id = params[:user_id].to_i
+    @user = User.find(params[:friend_id])
+    id_order = [current_user_id, @user.id].minmax
 
-    @user_relationship = UserRelationship.find_or_initialize_by(user_id: id_order.first, friend_id: id_order.last)
-    @user_relationship.direction ||= UserRelationship.get_direction(user_id, @friend.id) # only set direction on initial request
-    @user_relationship
+    @relationship = UserRelationship.find_or_initialize_by(user_id: id_order.first, friend_id: id_order.last)
+    @relationship.direction ||= UserRelationship.get_direction(current_user_id, @user.id) # only set direction on initial request
+    @relationship
   end
 
   def change_relationship_status!
     case params[:type]
     when 'add'
-      @user_relationship.status = 'pending'
+      @relationship.status = 'pending'
     when 'accept'
       # only the requestee can accept when the status is pending
-      if @user_relationship.status == 'pending' && @user_relationship.requestee?(params[:user_id])
-        @user_relationship.status = 'friends'
+      if @relationship.status == 'pending' && @relationship.requestee?(params[:user_id])
+        @relationship.status = 'friends'
       end
     end
   end

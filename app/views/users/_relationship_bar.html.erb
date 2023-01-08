@@ -1,15 +1,15 @@
 <%= turbo_frame_tag "relationship-bar" do %>
   <div class="flex gap-2 text-sm font-semibold">
-    <% case relation_setting(current_user, friend_id) %>
+    <% case relationship_setting(user, relationship) %>
     <% when 'none' %>
-    <%= button_to "Add Friend", user_user_relationships_url(current_user, type: "add", friend_id: friend_id), class: "rounded text-lime-300 border border-lime-300 hover:bg-lime-300 hover:text-lime-800 py-0 px-2" %>
+    <%= button_to "Add Friend", user_user_relationships_url(current_user, type: "add", friend_id: user.id), class: "rounded text-lime-300 border border-lime-300 hover:bg-lime-300 hover:text-lime-800 py-0 px-2" %>
     <% when 'pending me' %>
-    <%= button_to "Accept Request", user_user_relationships_url(current_user, type: "accept", friend_id: friend_id), class: "rounded text-lime-300 border border-lime-300 hover:bg-lime-300 hover:text-lime-800 py-0 px-2" %>
-    <%= link_to "Deny Request", user_user_relationship_url(current_user, friend_id: friend_id), class: "rounded text-red-300 border border-red-300 hover:bg-red-300 hover:text-red-800 py-0 px-2", data: { turbo_method: :delete } %>
+    <%= button_to "Accept Request", user_user_relationships_url(current_user, type: "accept", friend_id: user.id), class: "rounded text-lime-300 border border-lime-300 hover:bg-lime-300 hover:text-lime-800 py-0 px-2" %>
+    <%= link_to "Deny Request", user_user_relationship_url(current_user, friend_id: user.id), class: "rounded text-red-300 border border-red-300 hover:bg-red-300 hover:text-red-800 py-0 px-2", data: { turbo_method: :delete } %>
     <% when 'pending other' %>
-    <%= link_to "Cancel Request", user_user_relationship_url(current_user, friend_id: friend_id), class: "rounded text-yellow-300 border border-yellow-300 hover:bg-yellow-300 hover:text-yellow-800 py-0 px-2", data: { turbo_method: :delete } %>
+    <%= link_to "Cancel Request", user_user_relationship_url(current_user, friend_id: user.id), class: "rounded text-yellow-300 border border-yellow-300 hover:bg-yellow-300 hover:text-yellow-800 py-0 px-2", data: { turbo_method: :delete } %>
     <% when 'friends' %>
-    <%= link_to "Remove Friend", user_user_relationship_url(current_user, friend_id: friend_id), class: "rounded text-red-300 border border-red-300 hover:bg-red-300 hover:text-red-800 py-0 px-2", data: { turbo_method: :delete } %>
+    <%= link_to "Remove Friend", user_user_relationship_url(current_user, friend_id: user.id), class: "rounded text-red-300 border border-red-300 hover:bg-red-300 hover:text-red-800 py-0 px-2", data: { turbo_method: :delete } %>
   <% end %>
 </div>
 <% end %>
