@@ -57,6 +57,13 @@ class User < ApplicationRecord
   has_many :games_user
   has_many :games, through: :games_user
 
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :avatar,
+            content_type: { in: ['image/png', 'image/jpeg', 'image/webp'],
+                            message: 'must be .png, .jpg, or .webp' },
+            size: { less_than: 5.megabytes,
+                    message: 'must be less than 5 megabytes' }
+
   def email_required?
     false
   end
@@ -75,15 +82,17 @@ class User < ApplicationRecord
     return email unless email.blank?
   end
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name # assuming the user model has a name
-      user.username = auth.screen_name # assuming the user model has a username
-      # user.image = auth.info.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+  class << self
+    def from_omniauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.password = Devise.friendly_token[0, 20]
+        user.name = auth.info.name # assuming the user model has a name
+        user.username = auth.screen_name # assuming the user model has a username
+        # user.image = auth.info.image # assuming the user model has an image
+        # If you are using confirmable and the provider(s) you use validate emails,
+        # uncomment the line below to skip the confirmation emails.
+        # user.skip_confirmation!
+      end
     end
   end
 end

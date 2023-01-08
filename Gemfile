@@ -97,3 +97,6 @@ gem 'active_record_union'
 
 # Giant Bomb (video game) API
 gem 'giantbomb-api', '~> 1.6.0'
+
+# Active Storage validation
+gem 'active_storage_validations', '~> 1.0.0'
