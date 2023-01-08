@@ -13,7 +13,7 @@
     <% if @user == current_user %>
       <div class="game-search">
         <%= form_with url: user_games_path(@user), method: :get, class: "text-sm flex gap-2 items-center" do |search_f| %>
-          <%= search_f.text_field :search, placeholder: 'Search for game', class: "text-sm py-1 px-2" %>
+          <%= search_f.text_field :search, placeholder: 'Search for game', class: "input-main text-sm py-1 px-2" %>
           <%= button_tag type: :submit do %>
             <% inline_svg_tag 'search.svg', size: '24*24' %>
           <% end %>
