@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
-  resources :users, only: %i[show index] do
+  resources :users, only: %i[show] do
     resources :posts
     resources :user_relationships, only: %i[create update destroy], param: :friend_id
     resources :games, only: %i[index create destroy]
