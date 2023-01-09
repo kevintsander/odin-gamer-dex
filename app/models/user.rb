@@ -63,6 +63,9 @@ class User < ApplicationRecord
                             message: 'must be .png, .jpg, or .webp' },
             size: { less_than: 5.megabytes,
                     message: 'must be less than 5 megabytes' }
+  validates :name, length: { maximum: 50 }
+  validates :bio, length: { maximum: 500 }
+  validates :age, comparison: { greater_than: -1, less_than: 120 }
 
   def email_required?
     false

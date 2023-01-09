@@ -31,6 +31,23 @@
         </div>
 
         <div class="field">
+          <%= f.label :name, class: "font-semibold" %><br>
+          <%= f.text_field :name, autocomplete: "name", class: "input-main" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :age, class: "font-semibold" %><br>
+          <%= f.number_field :age, in: 0..120, class: "input-main" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :bio, class: "font-semibold" %><br>
+          <%= f.text_area :bio, rows: 6, class: "input-main" %>
+          <br>
+          <em>500 characters maximum</em>
+        </div>
+
+        <div class="field">
           <%= f.label :current_password , class: "font-semibold"%> <i>(we need your current password to confirm your changes)</i><br />
           <%= f.password_field :current_password, autocomplete: "current-password", class: "input-main" %>
         </div>
@@ -39,10 +56,10 @@
 
       <div class="field" data-controller="attachment-preview" data-attachment-preview-width-value="150" data-attachment-preview-height-value="100" data-attachment-preview-wrapper-class="">
         <%= f.label :avatar, class: "font-semibold" %>
+        <% if resource.avatar.attached? %>
+          <%= image_tag resource.avatar.variant(resize_to_fill: [150, nil]), class: "rounded-full mb-4" %>
+        <% end %>
         <div class="avatar-preview" data-attachment-preview-target="imgContainer">
-          <% if resource.avatar.attached? %>
-            <%= image_tag resource.avatar.variant(resize_to_fill: [150, nil]), class: "rounded-full mb-4" %>
-          <% end %>
         </div>
         <%= f.file_field :avatar, data: { attachment_preview_target: "attachmentInput", action: "change->attachment-preview#setPreviewImages" } %>
       </div>
