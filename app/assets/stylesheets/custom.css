@@ -5,7 +5,6 @@
 .user-layout {
     display: grid;
     grid-template-columns: auto 4fr 1fr;
-    grid-template-rows: 1fr;
     grid-template-areas:
         "left-panel content right-panel";
     gap: 1rem;
@@ -30,7 +29,6 @@
 .pixel-bg {
     background-image: url('pixel-vector-10.png');
     background-repeat: repeat-x;
-
 }
 
 input:checked~.dot {

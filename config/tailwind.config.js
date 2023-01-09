@@ -18,6 +18,9 @@ module.exports = {
         digital: ["pixeloid", "Arial", "sans-serif"],
         digitalbold: ["pixeloid-bold", "Arial", "sans-serif"],
       },
+      colors: {
+        "violet-400-op": "hsla(255, 92%, 76%, 75%)",
+      },
     },
   },
   plugins: [
