@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @feed = cookies[:feed] || 'true' # default to true if no preference has been set
 
     if current_user == @user && @feed == 'true'
+
       @pagy, @posts = pagy_countless(@user.posts.union(@user.friend_posts).includes(:user, reactions: :user).with_attached_images.order(created_at: :desc), items: @page_size,
                                                                                                                                                             overflow: :empty_page)
     else

@@ -17,7 +17,7 @@
       <div id="posts-container" class="flex flex-col gap-1">
         <%# append posts from turbo stream here %>
       </div>
-      <% if @user.posts.exists? %>
+      <% if @posts.any? %>
         <%= turbo_frame_tag "pagination", src: user_posts_path(@user, feed: @feed, format: :turbo_stream), loading: :lazy do %>
           <%= render 'posts_placeholder', page_size: @page_size %>
         <% end %>
