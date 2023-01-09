@@ -5,8 +5,11 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @page_size = 10
-    @feed = params[:feed]
-    if @feed && @feed == 'true'
+
+    cookies.permanent[:feed] = params[:feed] if params[:feed] # user can set preference
+    @feed = cookies[:feed] || 'true' # default to true if no preference has been set
+
+    if current_user == @user && @feed == 'true'
       @pagy, @posts = pagy_countless(@user.posts.union(@user.friend_posts).includes(:user, reactions: :user).with_attached_images.order(created_at: :desc), items: @page_size,
                                                                                                                                                             overflow: :empty_page)
     else
