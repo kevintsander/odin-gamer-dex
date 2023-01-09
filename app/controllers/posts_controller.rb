@@ -27,12 +27,10 @@ class PostsController < ApplicationController
   def create
     @post = @user.posts.build(post_params)
 
+    flash.alert = @post.errors.full_messages unless @post.save
+
     respond_to do |format|
-      if @post.save
-        format.turbo_stream
-      else
-        format.html { render :index, status: :unprocessable_entity }
-      end
+      format.turbo_stream
     end
   end
 
