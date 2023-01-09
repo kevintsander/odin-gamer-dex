@@ -1,12 +1,12 @@
 <%= turbo_frame_tag "user-game-bar" do %>
   <h3 class="text-slate-200 text-lg font-semibold">Now Playing</h3>
   <div class="rounded-lg bg-violet-400-op text-slate-800 shadow-lg shadow-slate-800 p-2 flex flex-col gap-8">
-    <% unless @user.games.present? %>
-      <%= turbo_frame_tag "no-user-games" do %>
-        <p>No Games</p>
-      <% end%>
-    <% else %>
-      <%= turbo_frame_tag "user-games", class: "flex flex-col gap-1" do %>
+    <%= turbo_frame_tag "user-games", class: "flex flex-col gap-1" do %>
+      <% unless @user.games.present? %>
+        <%= turbo_frame_tag "no-user-games" do %>
+          <p>No Games</p>
+        <% end%>
+      <% else %>
         <%= render partial: 'game', collection: @user.games, locals: { user: @user } %>
       <% end %>
     <% end %>
