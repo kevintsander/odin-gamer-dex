@@ -1,1 +1,2 @@
 <%= turbo_stream.prepend "posts-container", partial: 'post', locals: { post: @post, user: @user } %>
+<%= turbo_stream.remove "no-posts" %>

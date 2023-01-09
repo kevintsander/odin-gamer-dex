@@ -22,9 +22,9 @@
           <%= render 'posts_placeholder', page_size: @page_size %>
         <% end %>
       <% else %>
-        <div class="py-12 bg-slate-100 text-slate-900 rounded drop-shadow-lg flex justify-center">
+        <%= turbo_frame_tag "no-posts", class:"py-12 bg-slate-100 text-slate-900 rounded drop-shadow-lg flex justify-center" do %>
           No posts yet!
-        </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>
