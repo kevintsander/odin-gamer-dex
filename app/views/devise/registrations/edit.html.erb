@@ -1,53 +1,57 @@
-<div class="bg-violet-900 text-slate-100 rounded-2xl drop-shadow-lg py-12 px-16">
-  <h2 class="h2-main">Edit <%= resource_name.to_s.humanize %></h2>
+<div class="pixel-bg w-2/3 m-auto bg-violet-900 text-slate-100 rounded-2xl shadow-lg shadow-slate-800 py-8 flex flex-col gap-4 items-center">
+  <div class="w-2/3 flex flex-col gap-2">
+    <h2 class="font-digital text-3xl text-lime-300 font-semibold">Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-col items-start gap-2" }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-col items-start gap-2" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-main" %>
-    </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <% unless resource.provider %>
-
-      <div class="field">
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: "input-main" %>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-main" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "input-main" %>
-      </div>
-
-    <% end %>
-
-    <div class="field">
-      <%= f.label :avatar%>
-      <% if resource.avatar.attached? %>
-        <%= image_tag resource.avatar.variant(resize_to_fill: [150, nil]), class: "rounded-full mb-4" %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
-      <%= f.file_field :avatar %>
-    </div>
 
-    <div class="actions">
-      <%= f.submit "Update", class: "btn btn-main mt-4" %>
-    </div>
-  <% end %>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, data: { turbo_method: :delete }, class: "link-main pt-8" %>
-  <%= link_to "Back", :back, class: "link-main" %>
+      <% unless resource.provider %>
+
+        <div class="field">
+          <%= f.label :email, class: "font-semibold" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-main" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, class: "font-semibold" %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "input-main" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, class: "font-semibold" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-main" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :current_password , class: "font-semibold"%> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "input-main" %>
+        </div>
+
+      <% end %>
+
+      <div class="field" data-controller="attachment-preview" data-attachment-preview-width-value="150" data-attachment-preview-height-value="100" data-attachment-preview-wrapper-class="">
+        <%= f.label :avatar, class: "font-semibold" %>
+        <div class="avatar-preview" data-attachment-preview-target="imgContainer">
+          <% if resource.avatar.attached? %>
+            <%= image_tag resource.avatar.variant(resize_to_fill: [150, nil]), class: "rounded-full mb-4" %>
+          <% end %>
+        </div>
+        <%= f.file_field :avatar, data: { attachment_preview_target: "attachmentInput", action: "change->attachment-preview#setPreviewImages" } %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Update", class: "mt-4 w-full border-2 border-lime-300 text-lime-300 font-semibold hover:bg-lime-200 hover:text-lime-600 px-4 py-1 rounded" %>
+      </div>
+    <% end %>
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, data: { turbo_method: :delete }, class: "link-main pt-8" %>
+    <%= link_to "Back", :back, class: "link-main" %>
+  </div>
 </div>
