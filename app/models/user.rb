@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[twitter]
 
-  has_many :posts
-  has_many :reactions
+  has_many :posts, dependent: :delete_all
+  has_many :reactions, dependent: :delete_all
   has_one_attached :avatar
 
   has_many :relationships,
@@ -85,9 +85,13 @@ class User < ApplicationRecord
   class << self
     def from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        p '&' * 1000
+        p auth
+        p auth.info
+        p auth.screen_name
         user.password = Devise.friendly_token[0, 20]
-        user.name = auth.info.name # assuming the user model has a name
-        user.username = auth.screen_name # assuming the user model has a username
+        # user.name = auth.info.name # assuming the user model has a name
+        user.username = auth.info.nickname # assuming the user model has a username
         # user.image = auth.info.image # assuming the user model has an image
         # If you are using confirmable and the provider(s) you use validate emails,
         # uncomment the line below to skip the confirmation emails.
