@@ -20,8 +20,8 @@
         <% end %>
         <% if @search %>
           <% if @found_games.size > 0 %>
-            <p class="mt-2">Found games:</p>
             <%= turbo_frame_tag "found-games", class: "flex flex-col gap-1 items-center" do %>
+              <p class="mt-2">Found games:</p>
               <%= render partial: 'found_game', collection: @found_games, as: :found_game, locals: { user: @user, search_game: @search_game } %>
             <% end%>
           <% else %>
