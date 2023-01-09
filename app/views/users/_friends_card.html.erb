@@ -18,7 +18,7 @@
         <% end %>
         <% if @user_search %>
           <% if @found_users.size > 0 %>
-            <p>Found users:</p>
+            <p class="mt-2">Found users:</p>
             <%= turbo_frame_tag "found-users", class: "flex flex-col gap-1" do %>
               <%= render partial: 'friend', collection: @found_users, as: :friend %>
             <% end%>
