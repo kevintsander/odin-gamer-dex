@@ -2,8 +2,8 @@
 
   <%= turbo_frame_tag id="Posts" do %>
     <div class="post-main-container flex flex-col gap-2">
-      <%= render 'new_form', post: @post, user: @user if current_user %>
       <% if @user == current_user %>
+        <%= render 'new_form', post: @post, user: @user %>
         <%= link_to user_posts_path(@user, feed: (@feed == 'true' ? 'false' : 'true')), class: "feed-toggle rounded-full shadow-inner shadow-slate-400 bg-slate-200 text-slate-600 font-semibold text-sm p-1 self-start flex gap-2", data: { turbo_action: :replace } do %>
           <% if @feed == 'true' %>
             <p class="bg-violet-400 text-slate-100 rounded-full px-2 shadow shadow-slate-400">Feed</p>
