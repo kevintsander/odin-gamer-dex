@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: ENV['mailgun_smtp_username']
+  default from: ENV['GMAIL_SMTP_LOGIN']
 
   def signup_email
     @user = params[:user]

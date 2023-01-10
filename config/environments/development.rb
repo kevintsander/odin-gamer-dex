@@ -39,6 +39,13 @@ Rails.application.configure do
   # Action mailer setup
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: ENV['GMAIL_SMTP_SERVER'],
+  #   port: ENV['GMAIL_SMTP_PORT'],
+  #   user_name: ENV['GMAIL_SMTP_LOGIN'],
+  #   password: ENV['GMAIL_SMTP_PASSWORD']
+  # }
   config.action_mailer.asset_host = 'http://localhost:3000'
 
   # Don't care if the mailer can't send.

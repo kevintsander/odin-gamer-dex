@@ -64,12 +64,12 @@ Rails.application.configure do
 
   # Action mailer setup
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV['mailgun_smtp_address'],
-    port: ENV['mailgun_smtp_port'],
-    domain: ENV['mailgun_smtp_domain'],
-    user_name: ENV['mailgun_smtp_username'],
-    password: ENV['mailgun_smtp_password']
+    address: ENV['GMAIL_SMTP_SERVER'],
+    port: ENV['GMAIL_SMTP_PORT'],
+    user_name: ENV['GMAIL_SMTP_LOGIN'],
+    password: ENV['GMAIL_SMTP_PASSWORD']
   }
 
   config.action_mailer.perform_caching = false

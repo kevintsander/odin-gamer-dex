@@ -13,8 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     resource.friends << User.first
-    p '('
-    p resource
     UserMailer.with(user: resource).signup_email.deliver_now if resource.persisted?
   end
 
