@@ -23,5 +23,7 @@ module GamerDex
 
     config.autoload_paths.push("#{Rails.root}/lib",
                                "#{Rails.root}/services")
+
+    config.generators.test_framework = :rspec
   end
 end
