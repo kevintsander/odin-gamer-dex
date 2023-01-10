@@ -80,9 +80,8 @@ class User < ApplicationRecord
   end
 
   def display_name
-    return name unless name.blank?
-    return username unless username.blank?
-    return email unless email.blank?
+    username
+    # return name unless name.blank?
   end
 
   class << self
