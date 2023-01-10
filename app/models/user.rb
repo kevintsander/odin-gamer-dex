@@ -65,7 +65,7 @@ class User < ApplicationRecord
                     message: 'must be less than 5 megabytes' }
   validates :name, length: { maximum: 50 }
   validates :bio, length: { maximum: 500 }
-  validates :age, comparison: { greater_than: -1, less_than: 120 }
+  validates :age, comparison: { greater_than: -1, less_than: 120 }, allow_blank: true
 
   def email_required?
     false
