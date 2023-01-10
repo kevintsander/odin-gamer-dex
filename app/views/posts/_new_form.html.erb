@@ -8,7 +8,7 @@
       <% end %>
       <%= f.file_field :images, multiple: true, class: 'hidden', data: { attachment_preview_target: "attachmentInput", action: "change->attachment-preview#setPreviewImages" } %>
     </div>
-    <%= button_tag type: :submit do %>
+    <%= button_tag id: 'add-post', type: :submit do %>
       <%= inline_svg_tag 'add.svg', size: '40*40', class: 'ml-4 stroke-lime-300 stroke-2 hover:stroke-lime-400' %>
     <% end %>
   </div>
