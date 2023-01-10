@@ -4,7 +4,7 @@
 
 .user-layout {
     display: grid;
-    grid-template-columns: auto 4fr 1fr;
+    grid-template-columns: 200px 4fr 1fr;
     grid-template-areas:
         "left-panel content right-panel";
     gap: 1rem;
