@@ -62,6 +62,16 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "gamer_dex_production"
 
+  # Action mailer setup
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smpt_settings = {
+    address: ENV['mailgun_smtp_address'],
+    port: ENV['mailgun_smtp_port'],
+    domain: ENV['mailgun_smtp_domain'],
+    user_name: ENV['mailgun_smtp_username'],
+    password: ENV['mailgun_smtp_password']
+  }
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.

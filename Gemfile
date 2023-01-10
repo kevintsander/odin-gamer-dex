@@ -81,6 +81,9 @@ group :development do
 
   # Run tests when files change
   gem 'guard-rspec', require: false
+
+  # Preview emails
+  gem 'letter_opener'
 end
 
 group :test do
