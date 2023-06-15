@@ -3,7 +3,7 @@
   <div class="rounded-lg bg-violet-400-op text-slate-800 shadow-lg shadow-slate-800 p-2 flex flex-col gap-8">
     <% if user.friends.present? %>
       <div class="user-friends flex flex-col gap-1">
-        <%= render partial: 'friend', collection: user.friends, as: :friend %>
+        <%= render partial: 'users/friend', collection: user.friends, as: :friend %>
       </div>
     <% else %>
       <p>No friends</p>
