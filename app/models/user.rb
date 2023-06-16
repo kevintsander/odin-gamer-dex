@@ -72,11 +72,12 @@ class User < ApplicationRecord
   end
 
   def find_relationship(other_user_id)
-    if other_user_id < id
-      relationships.where(user_id: other_user_id).first
-    else
-      relationships.where(friend_id: other_user_id).first
-    end
+    # could be in user_id or friend_id column
+    relationships.where('(user_id <> ? AND user_id = ?) OR (friend_id <> ? AND friend_id = ?)',
+                        id,
+                        other_user_id,
+                        id,
+                        other_user_id).first
   end
 
   def display_name
