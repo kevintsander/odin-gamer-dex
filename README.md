@@ -2,6 +2,10 @@
 
 Gamer-dex is a Facebook-like social media app designed to link gamers together. This project was developed as the final project in the Ruby on Rails full stack curriculum from The Odin Project.
 
+## Link
+
+You can try the project at https://gamerdex.kevintsander.com
+
 ## Versions
 
 This application was developed with Ruby 3.1.2 and Rails 7.0.4.
@@ -67,10 +71,6 @@ Images uploads are stored to an Azure Files account.
 ## Automated Emails
 
 Automated emails are sent via Action Mailer. Initially I inteded to use Mailgun, but discovered that the free tier only allowed sending to verified accounts. Since I would love for anyone to log in and check out my work, I switched to an Gmail account instead.
-
-## Image Previews
-
-Image previews were added to for avatars and post images using a shared Hotwire Stimulus controller.
 
 ## Query Optimization
 
